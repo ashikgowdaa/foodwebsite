@@ -50,7 +50,7 @@ const Home = () => {
 
       {/* Card Section */}
       <div className="flex justify-center mt-2">
-        <div className="w-full max-w-[1500px] grid md:grid-cols-3 gap-5 items-center p-2 sm:p-1">
+        <div className="w-full max-w-[1500px] grid md:grid-cols-3 gap-5 items-center p-[1rem] sm:p-1">
           {/* card1 */}
           <div className="relative w-full rounded-xl ">
             <img
