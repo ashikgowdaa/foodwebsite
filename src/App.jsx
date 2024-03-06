@@ -3,11 +3,17 @@ import { createBrowserRouter,createRoutesFromElements ,Route, RouterProvider} fr
 import Home from './Components/Home';
 import Layout from './Layout/Outet';
 import '../src/index.css'
+import Cart from './Components/Cart';
+import Login from './Components/Login';
+import Register from './Components/Register';
 function App() {
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element= {<Layout/>} >
     <Route path='' element={<Home/>} />
+    <Route path='Login' element={<Login/>} />
+    <Route path='Register' element={<Register/>} />
+    <Route path='cart/:Id' element={<Cart/>} />
   </Route>
 ))
 

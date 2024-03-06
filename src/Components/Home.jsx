@@ -1,34 +1,32 @@
-import React, { useEffect, useState } from 'react'
-import {data} from'../Data/data';
-import {categories} from '../Data/data'
+import React, { useEffect, useState } from "react";
+import { data } from "../Data/data";
+import { categories } from "../Data/data";
 import { IoHeartCircleSharp } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
-  const [foodData,setFoodData]=useState(data)
+  const [foodData, setFoodData] = useState(data);
 
+  const navigate = useNavigate();
 
+  console.log(navigate)
   const filterByCat = (catValue) => {
-   setFoodData(
-    data.filter((item)=>{
-      return(
-        item.category===catValue
-      )
-    })
-   )
+    setFoodData(
+      data.filter((item) => {
+        return item.category === catValue;
+      })
+    );
   };
 
-  const filterByPrice=(priceValue)=>{
+  const filterByPrice = (priceValue) => {
     setFoodData(
-      data.filter((item)=>{
-        return(
-          item.price === priceValue
-        )
+      data.filter((item) => {
+        return item.price === priceValue;
       })
-    )
-  }
+    );
+  };
 
- 
   return (
-    < >
+    <>
       <div className="flex justify-center mt-2 p-2">
         <div className=" relative flex justify-center w-full max-w-[1500px] h-[60vh] ">
           <img
@@ -88,7 +86,7 @@ const Home = () => {
             <div className="absolute bg-[#0000009a] w-full h-full top-0 rounded-xl"></div>
           </div>
           {/* card3 */}
-          <div className="relative rounded-xl ">
+          <div className="relative rounded-xl">
             <img
               src="https://images.pexels.com/photos/718742/pexels-photo-718742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               className="rounded-xl object-cover w-full h-full"
@@ -118,101 +116,148 @@ const Home = () => {
             </h1>
             <p className="font-bold">Filter Type</p>
             <div className=" flex gap-5 flex-wrap md:flex-nowrap">
-              <button onClick={()=>setFoodData(data)} className="border text-black w-20 rounded-md focus:bg-[#fc854a] focus:text-white font-bold">
+              <button
+                onClick={() => setFoodData(data)}
+                className="border text-black w-20 rounded-md focus:bg-[#fc854a] focus:text-white font-bold"
+              >
                 All
               </button>
 
-              <button onClick={()=> filterByCat('burger')} className="border text-black w-20 rounded-md focus:bg-[#fc854a] focus:text-white font-bold">
+              <button
+                onClick={() => filterByCat("burger")}
+                className="border text-black w-20 rounded-md focus:bg-[#fc854a] focus:text-white font-bold"
+              >
                 Burgers
               </button>
-              <button onClick={()=> filterByCat('pizza')} className="border text-black w-20 rounded-md focus:bg-[#fc854a] focus:text-white font-bold">
+              <button
+                onClick={() => filterByCat("pizza")}
+                className="border text-black w-20 rounded-md focus:bg-[#fc854a] focus:text-white font-bold"
+              >
                 Pizza
               </button>
-              <button onClick={()=> filterByCat('salad')} className="border text-black w-20 rounded-md focus:bg-[#fc854a] focus:text-white font-bold">
+              <button
+                onClick={() => filterByCat("salad")}
+                className="border text-black w-20 rounded-md focus:bg-[#fc854a] focus:text-white font-bold"
+              >
                 Salads
               </button>
-              <button onClick={()=> filterByCat('chicken')} className="border text-black w-20 rounded-md focus:bg-[#fc854a] focus:text-white font-bold">
+              <button
+                onClick={() => filterByCat("chicken")}
+                className="border text-black w-20 rounded-md focus:bg-[#fc854a] focus:text-white font-bold"
+              >
                 Chicken
               </button>
             </div>
             <p className="font-bold">Filter Price</p>
             <div className="flex gap-2">
-              <button onClick={()=>filterByPrice('$')} className="border text-black w-20 rounded-md focus:bg-[#fc854a] focus:text-white font-bold">
+              <button
+                onClick={() => filterByPrice("$")}
+                className="border text-black w-20 rounded-md focus:bg-[#fc854a] focus:text-white font-bold"
+              >
                 $
               </button>
-              <button onClick={()=>filterByPrice('$$')} className="border text-black w-20 rounded-md focus:bg-[#fc854a] focus:text-white font-bold">
+              <button
+                onClick={() => filterByPrice("$$")}
+                className="border text-black w-20 rounded-md focus:bg-[#fc854a] focus:text-white font-bold"
+              >
                 $$
               </button>
-              <button onClick={()=>filterByPrice('$$$$')} className="border text-black w-20 rounded-md focus:bg-[#fc854a] focus:text-white font-bold">
+              <button
+                onClick={() => filterByPrice("$$$$")}
+                className="border text-black w-20 rounded-md focus:bg-[#fc854a] focus:text-white font-bold"
+              >
                 $$$
               </button>
-              <button onClick={()=>filterByPrice('$$$$')} className="border text-black w-20 rounded-md focus:bg-[#fc854a] focus:text-white font-bold">
+              <button
+                onClick={() => filterByPrice("$$$$")}
+                className="border text-black w-20 rounded-md focus:bg-[#fc854a] focus:text-white font-bold"
+              >
                 $$$$
               </button>
             </div>
           </div>
           {/* food card section */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
-{
-  foodData.map((item,index)=>{
-    return(
-
-    <div key={index} className="rounded-sm flex flex-col gap-3 items-center p-3 shadow-orange-300 shadow-lg relative ">
-    <div className="absolute top-[46%] right-[2%]">
-      <IoHeartCircleSharp size={40} className='cursor-pointer'/>
-    </div>
-    <img
-      src={item.image} className='rounded-xl object-cover  min-w-[300px] max-h-[200px]' alt=""
-    />
-    <div className="">
-      <h1 className='text-2xl font-bold'>{item.name}</h1>
-      <p className='font-bold'>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-        Blanditiis, quisquam?
-      </p>
-      <div className="mt-3">
-        <span className='text-[#fca04a] font-bold'>Can be added</span>
-        <span className='flex gap-1 flex-wrap mt-2'>
-          <button className='text-black text-black border w-max px-3 rounded-md font-bold focus:bg-red-700 focus:text-white rounded-md font-bold focus:bg-red-700 focus:text-white' >Extra Sauce</button>
-          <button className='text-black border w-max px-3 rounded-md font-bold focus:bg-red-700 focus:text-white ' > Drink</button>
-          <button className='text-black border w-max px-3 rounded-md font-bold focus:bg-red-700 focus:text-white ' >Extra Hotness</button>
-          <button className='text-black border w-max px-3 rounded-md font-bold focus:bg-red-700 focus:text-white ' >double hotified</button>
-        </span>
-      </div>
-      <div className="flex justify-around mt-4">
-        <h1 className='text-3xl font-bold'>{item.price}</h1>
-        <button className='border-none p-2 rounded-lg bg-red-700 text-white font-bold hover:bg-green-600'> Order Now</button>
-      </div>
-    </div>
-  </div>
-    )
-  })
-}
-
-          
-         
+            {foodData.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className="rounded-sm flex flex-col gap-3 items-center p-3 shadow-orange-300 shadow-lg relative "
+                >
+                  <div className="absolute top-[46%] right-[2%]">
+                    <IoHeartCircleSharp size={40} className="cursor-pointer" />
+                  </div>
+                  <img
+                    src={item.image}
+                    className="rounded-xl object-cover  min-w-[300px] max-h-[200px]"
+                    alt=""
+                  />
+                  <div className="">
+                    <h1 className="text-2xl font-bold">{item.name}</h1>
+                    <p className="font-bold">
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                      Blanditiis, quisquam?
+                    </p>
+                    <div className="mt-3">
+                      <span className="text-[#fca04a] font-bold">
+                        Can be added
+                      </span>
+                      <span className="flex gap-1 flex-wrap mt-2">
+                        <button className="text-black text-black border w-max px-3 rounded-md font-bold focus:bg-red-700 focus:text-white rounded-md font-bold focus:bg-red-700 focus:text-white">
+                          Extra Sauce
+                        </button>
+                        <button className="text-black border w-max px-3 rounded-md font-bold focus:bg-red-700 focus:text-white ">
+                          {" "}
+                          Drink
+                        </button>
+                        <button className="text-black border w-max px-3 rounded-md font-bold focus:bg-red-700 focus:text-white ">
+                          Extra Hotness
+                        </button>
+                        <button className="text-black border w-max px-3 rounded-md font-bold focus:bg-red-700 focus:text-white ">
+                          double hotified
+                        </button>
+                      </span>
+                    </div>
+                    <div className="flex justify-around mt-4">
+                      <h1 className="text-3xl font-bold">{item.price}</h1>
+                      <button
+                        className="border-none p-2 rounded-lg bg-red-700 text-white font-bold hover:bg-green-600"
+                        onClick={()=>navigate(`/cart/${item.id}`)}
+                      >
+                        {" "}
+                        Order Now
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
       {/* Menu Section */}
-  <div className="text-5xl text-center text-[#fca04a] font-bold font-lobster ">Menu List</div>
-      <div className="flex justify-center mt-2 p-2">
-<div className="w-full max-w-[1500px] flex gap-2 flex-wrap justify-center ">
-  {
-    categories.map((item,index)=>{
-      return(
-        <div key={index} className="bg-[#4444453b] w-[150px] flex justify-center flex-col items-center rounded-lg px-1">
-        <img src={item.image} className='object-contain w-1/2' alt="" />
-        <h1 className='text-white font-bold text-[0.8rem] text-red-700 '>{item.name}</h1>
+      <div className="text-5xl text-center text-[#fca04a] font-bold font-lobster ">
+        Menu List
       </div>
-      )
-    })
-  }
-
-</div>
+      <div className="flex justify-center mt-2 p-2">
+        <div className="w-full max-w-[1500px] flex gap-2 flex-wrap justify-center ">
+          {categories.map((item, index) => {
+            return (
+              <div
+                key={index}
+                className="bg-[#4444453b] w-[150px] flex justify-center flex-col items-center rounded-lg px-1"
+              >
+                <img src={item.image} className="object-contain w-1/2" alt="" />
+                <h1 className="text-white font-bold text-[0.8rem] text-red-700 ">
+                  {item.name}
+                </h1>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </>
   );
-}
+};
 
-export default Home
+export default Home;
